@@ -1,86 +1,33 @@
-jQuery(function() {
-    jQuery('body')
-        .on('updated_checkout', function() {
-
-            addIostPayOnClick();
-
-            jQuery('input[name="payment_method"]').change(function() {
-                console.log("payment method changed");
-
-                if (typeof IWalletJS === 'undefined' && jQuery('form[name="checkout"] input[name="payment_method"]:checked').val() == 'iostpay') {
-
-                    // console.log('undefined');
-
-                    swal({
-                        title: "Iwallet",
-                        text: "iwallet extension not found!",
-                        type: "error"
-                    }).then((willDelete) => {
-
-                        jQuery('#place_order').attr("disabled", true);
-                    });
-
-                    return false;
-                } else if (typeof IWalletJS !== 'undefined' && IWalletJS.account.name == null && jQuery('form[name="checkout"] input[name="payment_method"]:checked').val() == 'iostpay') {
-
-                    swal({
-                        title: "Iwallet",
-                        text: "Please Unlock iwallet Extension!",
-                        type: "error"
-                    }).then((willDelete) => {
-
-                        jQuery('#place_order').attr("disabled", true);
-
-                    });
-
-                } else {
-                    addIostPayOnClick();
-                }
-
-
-            });
-        });
-});
-
-
-
-
-// iostpay 
-
 var transfer;
 document.addEventListener("DOMContentLoaded", async function() {
     await new Promise(done => setTimeout(() => done(), 500));
 
     if('IWalletJS' in window){
-        console.log("IWallet is installed", window.IWalletJS);
+
     } else {
-        console.log("IWallet is not installed");
+
     }    
         
         
-    if (typeof IWalletJS === 'undefined' && jQuery('form[name="checkout"] input[name="payment_method"]:checked').val() == 'iostpay') {
+    if (typeof IWalletJS === 'undefined' ) {
 
-        // console.log('undefined');
 
         swal({
             title: "Iwallet",
             text: "iwallet extension not found!",
             type: "error"
         }).then((willDelete) => {
-
-            jQuery('#place_order').attr("disabled", true);
+			
+            jQuery('#makepayment').attr("disabled", true);
+			location.reload(true);
         });
 
 
 
         return false;
-    } else {
+    } 
 
-        console.log('defined');
-    }
-
-
-    if (IWalletJS.account.name == null && jQuery('form[name="checkout"] input[name="payment_method"]:checked').val() == 'iostpay') {
+    if ( IWalletJS.account.name == null ) {
 
         swal({
             title: "Iwallet",
@@ -88,7 +35,8 @@ document.addEventListener("DOMContentLoaded", async function() {
             type: "error"
         }).then((willDelete) => {
 
-            jQuery('#place_order').attr("disabled", true);
+			
+				location.reload(true);
 
         });
 
@@ -100,137 +48,136 @@ document.addEventListener("DOMContentLoaded", async function() {
         if (!account) return;
 
         const iost = IWalletJS.newIOST(IOST);
-
-        transfer = function() {
-
-            jQuery('#place_order').removeAttr("onclick");
-
-            hndlChkFormSubmsn(false);
-
-            var checkout_form = jQuery('form.checkout');
-
-            var input = jQuery(this).next();
-            input.removeAttr("onclick")
-
-            const tx = iost.callABI("token.iost", "transfer", ["iost", account, iostpay_account_id, cart_total, "dapp test memo"]);
+        var paybyiost_form = jQuery('form#paybyiost');
+	   
+		    //var cart_total="1";
+			const tx = iost.callABI("token.iost", "transfer", ["iost", account, iostpay_account_id, cart_total, "OrderID: "+order_id]);
+			
             tx.addApprove("iost", cart_total);
 
-            // console.log(tx.getApproveList());
 
             iost.signAndSend(tx)
                 .on('pending', function(txid) {
 
-
-                    checkout_form.append('<input type="hidden" id="iostpay_txnid" name="iostpay_txnid" value="' + txid + '">');
-
-
-                    ChekForPayResp('pending');
-                    // hndlChkFormSubmsn( true ) ;
-
-                    setInterval(function() {
-                        jQuery('#place_order').trigger('click');
-                    }, 200);
-
-                    console.log('pending');
-                })
+                paybyiost_form.append('<input type="hidden" id="iostpay_txnid" name="iostpay_txnid" value="' + txid + '">');
+		
+				})
                 .on('success', function(result) {
 
-
-                    ChekForPayResp('success');
-
-                })
+					var	object 	=	JSON.parse( JSON.stringify(result) ) ;
+                 
+					ChekForPayResp('success');
+				})
                 .on('failed', function(failed) {
+					
+					var	object 	=	JSON.parse( JSON.stringify(failed) ) ;
+					var iostpay_txnid = jQuery('#iostpay_txnid').val();	
+					
+					
+							if( iostpay_txnid == null  ){
+								
+								msg = 'Payment is Failed' ;
+								
+							}else if( iostpay_txnid != '' ){
+								
+								msg = 'Balance Is not Enough' ;
+								
+							}	
+							 swal({
+									title: "Iwallet",
+									text : msg+"!  Try Again!",
+									type : "error",
+									icon: "warning",
+									buttons: true,
+									dangerMode: true,
+								}).then((willDelete) => {
+													
+									if (willDelete) {
+										location.reload( true ) ;		
+									} else {
+										window.location = shop_page_url ;
+									}
+								});
+				})
+		
+		})
+	})
 
+function ChekForPayResp( status ) {
 
-                    ChekForPayResp('failed');
+	jQuery('#overlay').fadeIn().delay(5000).fadeOut();
+	var iostpay_txnid = jQuery('#iostpay_txnid').val();	
 
-                })
-
-
-        }
-    })
-
-
-})
-
-// iostpay 
-
-function ChekForPayResp(status) {
-
-    jQuery('#place_order').attr("disabled", true);
-
-    jQuery('#overlay').fadeIn().delay(16000).fadeOut();
-
-    setInterval(function() {
-
-
-        var iostpay_txnid = jQuery('#iostpay_txnid').val();
-
+	
+    setTimeout(function() {
+	
+		
         jQuery.ajax({
             url: iost_txnURL,
             cache: false,
             type: "POST",
             data: {
-                txid: iostpay_txnid
+             txid   : iostpay_txnid
             },
-            success: function(json) {
+            success: function( json ) {
 
+				// console.log(json) ;
                 if (json !== '') {
-
+					
                     const obj = JSON.parse(json);
                     var message = obj.message
-                    var status_code = obj.status_code
-
+                    var status_code = obj.status_code 
+					
+					iost_updateOrder( json ) ;
+					
                     jQuery('.iotpay_statuscode').text(message);
 
-                    var checkout_form = jQuery('form.checkout');
-
-                    checkout_form.append('<input type="hidden" id="iostpay_status" name="iostpay_status" value="' + status_code + '">');
-
-                    // console.log(json);
-
-
-                    if (status_code == 'failed' || status_code == 'pending') {
-                        flag = false
-                        window.location.href = get_cart_url ;
-                        return false;
-                    } else {
-                        flag = true
-                    }
-
-                    hndlChkFormSubmsn(true);
-                }
+				}
             }
         });
         return false;
 
 
-    }, 15000);
+    }, 5000);
 
 
 }
 
-function hndlChkFormSubmsn(flag) {
-
-    var checkout_form = jQuery('form.checkout');
-    checkout_form.on('checkout_place_order', function() {
-        return flag;
-    });
-
-}
 
 
-function addIostPayOnClick() {
+	function iost_updateOrder( jsonData ) {
+	
+	   const obj = JSON.parse(jsonData);
+	   var message = obj.message
+	   var status_code = obj.status_code
+	   var iostpay_txnid = obj.iostpay_txnid
+					
+	jQuery.ajax({
+            url: iost_updateOrderURL,
+            cache: false,
+            type: "POST",
+            data: {
+             iostpay_txnid   : iostpay_txnid,
+			 orderStatus : status_code,
+			 message : message
+            },
+		success: function( resp ) {
+			   console.log(resp);
+				 const obj 			= JSON.parse( resp );
+			     var status_code 	= obj.status_code	;
+			     var message 		= obj.message	;
+				 var order_key		=obj.order_key;
+					swal({
+                        title: "Iwallet",
+                        text : message,
+                        type : "Payment completed"
+                    }).then((willDelete) => {
+						var final_url=order_received_url+'/?key='+obj.order_key+'&success=1';
+						window.location = final_url ;
+					});
+						
+				 
+			}			
+		})
+	}
 
-    if (jQuery('form[name="checkout"] input[name="payment_method"]:checked').val() == 'iostpay') {
-
-        jQuery("#place_order").attr("onclick", "transfer()");
-
-    } else {
-
-        jQuery("#place_order").removeAttr("onclick")
-        jQuery("#place_order").removeAttr("disabled")
-
-    }
-
-}

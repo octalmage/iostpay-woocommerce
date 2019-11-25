@@ -1,10 +1,10 @@
 <?php
 /*
- * Plugin Name: WooCommerce IOSTPAY Payment Gateway
- * Plugin URI: https://rudrastyh.com/woocommerce/payment-gateway-plugin.html
- * Description: Take credit card payments on your store.
- * Author: Bolder Technologies
- * Author URI: http://rudrastyh.com
+ * Plugin Name: WooCommerce IOSTPAY
+ * Plugin URI: https://metanyx.com/
+ * Description: Pay with IOST
+ * Author: Metanyx
+ * Author URI: https://metanyx.com/
  * Version: 1.0.1
  *
  
@@ -35,9 +35,9 @@ function iostpay_init_gateway_class() {
 				
 				$this->id = 'iostpay'; // payment gateway plugin ID
 				$this->icon = ''; // URL of the icon that will be displayed on checkout page near your gateway name
-				$this->has_fields = true; // in case you need a custom credit card form
-				$this->method_title = 'Iostpay Gateway';
-				$this->method_description = 'Description of Iostpay gateway'; // will be displayed on the options page
+				$this->has_fields = false; // in case you need a custom credit card form
+				$this->method_title = 'IOSTPay';
+				$this->method_description = 'IOSTPay'; // will be displayed on the options page
 				$this->keyname = ''; // will be displayed on the options page
 			 
 				// gateways can support subscriptions, refunds, saved payment methods,
@@ -80,7 +80,7 @@ function iostpay_init_gateway_class() {
 	$this->form_fields = array(
 		'enabled' => array(
 			'title'       => 'Enable/Disable',
-			'label'       => 'Enable Iostpay Gateway',
+			'label'       => 'Enable IOSTPay',
 			'type'        => 'checkbox',
 			'description' => '',
 			'default'     => 'no'
@@ -99,7 +99,7 @@ function iostpay_init_gateway_class() {
 			'default'     => '',
 		),
 		'iostpay_account_id' => array(
-			'title'       => 'IOSTPAY Account Id',
+			'title'       => 'IOSTPay Account Id',
 			'type'        => 'text',
 			'description' => 'This controls the description which the user sees during checkout.',
 			'default'     => '',
@@ -145,25 +145,25 @@ function iostpay_init_gateway_class() {
 	public function process_payment( $order_id ) {
  
 			global $woocommerce;
-			$order_status =		$_POST['iostpay_status'] ;
+			// $order_status =		$_POST['iostpay_status'] ;
 			
 			$order = wc_get_order( $order_id );
 
-			$status = 'wc-'.$order_status ; 	
+			// $status = 'wc-'.$order_status ; 
+			
 			// $status = 'wc-completed' ; 	
 			
-			$order->add_order_note( json_encode( $_POST ) );
+			// $order->add_order_note( json_encode( $_POST ) );
 
-			$this->order_status;
-			update_post_meta( $order_id, '_iostpay_txnid_field', $_POST[ 'iostpay_txnid' ] );
+			// update_post_meta( $order_id, '_iostpay_txnid_field', $_POST[ 'iostpay_txnid' ] );
             // Set order status
-            $order->update_status( $status, __( 'Checkout with iostpay.', $this->domain ) );
+            // $order->update_status( $status, __( 'Checkout with IOSTPay.', $this->domain ) );
 
             // Reduce stock levels
             $order->reduce_order_stock();
 
             // Remove cart
-            WC()->cart->empty_cart();
+            WC()->cart->empty_cart() ;
 
             // Return thankyou redirect
             
@@ -192,101 +192,7 @@ function iostpay_init_gateway_class() {
  	}
 }
 
-add_action('woocommerce_after_checkout_form', 'debounce_add_jscript_checkout');
 
-function debounce_add_jscript_checkout() {
-?>
-
-<?php
-}
-
-
-// add_action( 'woocommerce_form_field_text','reigel_custom_heading', 10, 2 );
-// function reigel_custom_heading( $field, $key ){
-    // if ( is_checkout() && ( $key == 'billing_company') ) {
-        // $field .= '';
-    // }
-    // return $field;
-// }
-
-add_filter( 'woocommerce_order_button_html', 'custom_order_button_html');
-function custom_order_button_html( $button ) {
-
-    $order_button_text = __('Place order', 'woocommerce');
-
-
- $button = '<button  data-currency="'. get_option('woocommerce_currency') .'" class="button alt" name="" id="place_order" >' . esc_attr( $order_button_text ) . ' </button>' ;
-  
-    return $button;
-}
-
-function add_checkout_script() {
-
-	global $woocommerce ;
-   // Do your code checking stuff here e.g. 
-    $myPluginGateway = new WC_Iostpay_Gateway();
-
-    $iostpay_account_id = $myPluginGateway->get_option('iostpay_account_id');
-	
-    $cmc_api_key = $myPluginGateway->get_option('cmc_api_key');
-
-
- $cart_total = floatval( preg_replace( '#[^\d.]#', '', $woocommerce->cart->get_cart_total() ) );
-
-    // $cart_total =  $woocommerce->cart->get_cart_total() ;
-     $cart_total =  WC()->cart->total;
-     $cart_total			=	convertPriceToIOST( $cart_total ) ;
-	$get_cart_url	=	WC_Cart::get_cart_url() ;
-	
-	
-
-?>
-
-
- <script type="text/javascript" src="<?php echo  plugin_dir_url( __FILE__ ).'iost/dist/iost.min.js'  ?>"></script>
- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
- <script>
- 
-  var iostpay_account_id  = '<?php echo $iostpay_account_id ;   ?>' ;
-  var cart_total  = '<?php echo $cart_total ;   ?>' ;
-  var iost_txnURL  = '<?php echo plugin_dir_url( __FILE__ ).'iost_txn.php' ?>' ;
-  var get_cart_url  = '<?php echo $get_cart_url ?>' ;
- 
- </script>
-  <script src="<?php echo  plugin_dir_url( __FILE__ ).'js/iostwallet.js'  ?>"></script>
- 
-	
-<div id="overlay" style="display:none;"> <div class="spinner"></div> <br/> <span class="iotpay_statuscode"> We are processing your order... </span> </div>
-<style>
-.spinner {
-    margin: 0 auto;
-    height: 64px;
-    width: 64px;
-    animation: rotate 0.8s infinite linear;
-    border: 5px solid firebrick;
-    border-right-color: transparent;
-    border-radius: 50%;
-}
-@keyframes rotate {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-div#overlay {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-}
-</style>
-<?php       
-}
-add_action( 'woocommerce_after_checkout_form', 'add_checkout_script' );
-
-
- 
 
 
 function convertPriceToIOST( $invoice_amount ){
@@ -345,7 +251,7 @@ if ( ! function_exists( 'iostpay_add_meta_boxes' ) )
 {
     function iostpay_add_meta_boxes()
     {
-        add_meta_box( 'iostpay_txnid', __('Iostpay TxnId','woocommerce'), 'iostpay_add_other_fields_for_packaging', 'shop_order', 'side', 'core' );
+        add_meta_box( 'iostpay_txnid', __('IOSTPay TxnId','woocommerce'), 'iostpay_add_other_fields_for_packaging', 'shop_order', 'side', 'core' );
     }
 }
 
@@ -364,3 +270,18 @@ if ( ! function_exists( 'iostpay_add_other_fields_for_packaging' ) )
 
     }
 }
+
+
+add_action( 'woocommerce_thankyou', 'bbloomer_redirectcustom');
+  
+function bbloomer_redirectcustom( $order_id ){
+  
+  $order = wc_get_order( $order_id );
+  $url = plugin_dir_url( __FILE__ ).'paybyiost.php?order='.$order_id;
+  
+	
+    if ( $order->get_payment_method() == 'iostpay' && $order->has_status( 'pending' ) ) {
+			wp_safe_redirect( $url ) ;
+        exit;
+    }
+}	

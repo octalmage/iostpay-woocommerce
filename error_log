@@ -90,3 +90,105 @@ Stack trace:
 #1 /home/metanyxi/oscommerce.metanyx.io/ext/modules/payment/iostpay/wallet.php(8): order->__construct(122)
 #2 {main}
   thrown in /home/metanyxi/oscommerce.metanyx.io/admin/includes/classes/order.php on line 29
+[18-Nov-2019 04:38:20 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function wc_get_order() in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php:3
+Stack trace:
+#0 {main}
+  thrown in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 3
+[18-Nov-2019 04:38:22 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function wc_get_order() in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php:3
+Stack trace:
+#0 {main}
+  thrown in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 3
+[18-Nov-2019 04:39:06 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function wc_get_order() in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php:4
+Stack trace:
+#0 {main}
+  thrown in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 4
+[18-Nov-2019 04:39:08 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function wc_get_order() in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php:4
+Stack trace:
+#0 {main}
+  thrown in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 4
+[18-Nov-2019 04:39:09 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function wc_get_order() in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php:4
+Stack trace:
+#0 {main}
+  thrown in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 4
+[18-Nov-2019 04:39:35 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function wc_get_order() in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php:4
+Stack trace:
+#0 {main}
+  thrown in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 4
+[18-Nov-2019 04:39:36 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function wc_get_order() in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php:4
+Stack trace:
+#0 {main}
+  thrown in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 4
+[18-Nov-2019 04:39:46 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function wc_get_order() in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php:4
+Stack trace:
+#0 {main}
+  thrown in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 4
+[18-Nov-2019 04:39:47 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function wc_get_order() in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php:4
+Stack trace:
+#0 {main}
+  thrown in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 4
+[18-Nov-2019 04:39:48 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function wc_get_order() in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php:4
+Stack trace:
+#0 {main}
+  thrown in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 4
+[18-Nov-2019 04:40:05 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function wc_get_order() in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php:4
+Stack trace:
+#0 {main}
+  thrown in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 4
+[18-Nov-2019 04:41:32 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function wc_get_order() in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php:4
+Stack trace:
+#0 {main}
+  thrown in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 4
+[18-Nov-2019 04:41:33 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function wc_get_order() in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php:4
+Stack trace:
+#0 {main}
+  thrown in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 4
+[18-Nov-2019 04:43:07 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function wc_get_order() in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php:4
+Stack trace:
+#0 {main}
+  thrown in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 4
+[18-Nov-2019 04:43:09 UTC] PHP Fatal error:  Uncaught Error: Class 'WC_Order' not found in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php:5
+Stack trace:
+#0 {main}
+  thrown in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 5
+[18-Nov-2019 04:43:10 UTC] PHP Fatal error:  Uncaught Error: Class 'WC_Order' not found in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php:5
+Stack trace:
+#0 {main}
+  thrown in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 5
+[18-Nov-2019 04:43:10 UTC] PHP Fatal error:  Uncaught Error: Class 'WC_Order' not found in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php:5
+Stack trace:
+#0 {main}
+  thrown in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 5
+[18-Nov-2019 04:43:39 UTC] PHP Fatal error:  Uncaught Error: Class 'WC_Order' not found in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php:5
+Stack trace:
+#0 {main}
+  thrown in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 5
+[18-Nov-2019 04:43:40 UTC] PHP Fatal error:  Uncaught Error: Class 'WC_Order' not found in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php:5
+Stack trace:
+#0 {main}
+  thrown in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 5
+[18-Nov-2019 04:44:07 UTC] PHP Fatal error:  Uncaught Error: Class 'WC_Order' not found in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php:5
+Stack trace:
+#0 {main}
+  thrown in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 5
+[18-Nov-2019 04:46:09 UTC] PHP Warning:  require_once(../../wp-load.php): failed to open stream: No such file or directory in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 2
+[18-Nov-2019 04:46:09 UTC] PHP Fatal error:  require_once(): Failed opening required '../../wp-load.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 2
+[18-Nov-2019 04:46:12 UTC] PHP Warning:  require_once(../../wp-load.php): failed to open stream: No such file or directory in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 2
+[18-Nov-2019 04:46:12 UTC] PHP Fatal error:  require_once(): Failed opening required '../../wp-load.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 2
+[18-Nov-2019 04:46:18 UTC] PHP Warning:  require_once(./../wp-load.php): failed to open stream: No such file or directory in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 2
+[18-Nov-2019 04:46:18 UTC] PHP Fatal error:  require_once(): Failed opening required './../wp-load.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 2
+[18-Nov-2019 04:46:19 UTC] PHP Warning:  require_once(./../wp-load.php): failed to open stream: No such file or directory in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 2
+[18-Nov-2019 04:46:19 UTC] PHP Fatal error:  require_once(): Failed opening required './../wp-load.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 2
+[18-Nov-2019 04:46:20 UTC] PHP Warning:  require_once(./../wp-load.php): failed to open stream: No such file or directory in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 2
+[18-Nov-2019 04:46:20 UTC] PHP Fatal error:  require_once(): Failed opening required './../wp-load.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 2
+[18-Nov-2019 04:54:56 UTC] PHP Warning:  require_once(../../../../wp-load.php): failed to open stream: No such file or directory in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 3
+[18-Nov-2019 04:54:56 UTC] PHP Fatal error:  require_once(): Failed opening required '../../../../wp-load.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 3
+[18-Nov-2019 05:24:44 UTC] PHP Parse error:  syntax error, unexpected '<', expecting end of file in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 17
+[18-Nov-2019 05:50:27 UTC] PHP Fatal error:  Uncaught Error: Class 'WC_Iostpay_Gateway' not found in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/paybyiost.php on line 10
+[18-Nov-2019 05:50:30 UTC] PHP Parse error:  syntax error, unexpected '}', expecting end of file in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/iostpay.php on line 161
+[18-Nov-2019 06:46:26 UTC] PHP Fatal error:  Uncaught Error: Using $this when not in object context in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/updateOrder.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/metanyxi/woocommerce.metanyx.io/wp-content/plugins/iostpay-woocommerce-master/updateOrder.php on line 21
