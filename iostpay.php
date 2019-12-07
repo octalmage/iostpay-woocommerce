@@ -1,6 +1,6 @@
 <?php
 /*
- * Plugin Name: WooCommerce IOSTPAY
+ * Plugin Name: IOSTPAY
  * Plugin URI: https://metanyx.com/
  * Description: Pay with IOST
  * Author: Metanyx
